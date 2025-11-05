@@ -6,6 +6,9 @@ This README provides a step-by-step guide to setting up and running the Bumperbo
 
 The `bumperbot_description` package contains all the necessary files to describe the Bumperbot robot, including its URDF model, meshes, launch files for simulation, and Rviz configuration.
 
+<img width="242" height="304" alt="image" src="https://github.com/user-attachments/assets/96656d5c-39f6-4923-964d-b0a1a635abf3" />
+
+
 ## 2. Prerequisites
 
 *   ROS 2 (e.g., Humble Hawksbill or later) installed and sourced.
