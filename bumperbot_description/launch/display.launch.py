@@ -41,7 +41,7 @@ def generate_launch_description():
     [
       model_arg,
       robot_state_publisher,
-      joint_state_publisher,
+      # joint_state_publisher, // Dont use it when running bumperbot_gazebo.py
       rviz_node
     ]
   )
