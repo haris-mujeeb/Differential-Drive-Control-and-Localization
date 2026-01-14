@@ -121,7 +121,7 @@ Which expands to:
 $$
 \begin{bmatrix} v_x \\ v_y \\ \dot{\theta} \end{bmatrix} = \begin{bmatrix} \frac{r cos(\phi)}{2} & \frac{r cos(\phi)}{2} \\ 
     \frac{r sin(\phi)}{2} & \frac{r sin(\phi)}{2}  \\ 
-    \frac{r}{l} & -\frac{r}{l} 
+    -\frac{r}{l} & \frac{r}{l} 
 \end{bmatrix} 
 \begin{bmatrix} \dot{\phi}_{left} \\ \dot{\phi}_{right} \end{bmatrix}
 $$
@@ -132,7 +132,7 @@ The Jacobian matrix `J` for this system is:
 $$
 J = \begin{bmatrix} \frac{r cos(\phi)}{2} & \frac{r cos(\phi)}{2} \\ 
     \frac{r sin(\phi)}{2} & \frac{r sin(\phi)}{2}  \\ 
-    \frac{r}{l} & -\frac{r}{l} 
+    -\frac{r}{l} & \frac{r}{l} 
 \end{bmatrix} 
 $$
 
