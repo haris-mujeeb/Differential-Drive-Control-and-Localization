@@ -44,8 +44,11 @@
     <!-- ROS 2 Humble -->
     <xacro:if value="$(arg is_ignition)">
       <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
-      <parameters>$(find bumperbot_controller)/config/bumperbot_controllers.yaml</parameters>
+        <parameters>$(find bumperbot_controller)/config/bumperbot_controllers.yaml</parameters>
       </plugin>
+      <plugin filename="libignition-gazebo-imu-system" name="ignition::gazebo::systems::Imu">
+      </plugin>
+      
 
     <!-- ROS 2 Iron or above -->
     </xacro:if>
@@ -53,7 +56,68 @@
       <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
         <parameters>$(find bumperbot_controller)/config/bumperbot_controllers.yaml</parameters>
       </plugin>
+      <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu">
+      </plugin>
     </xacro:unless>
+  </gazebo>
+
+  <!-- IMU -->
+
+  <gazebo reference = "imu_link">
+    <sensor name="imu" type="imu" update_rate="">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <gz_frame_id>imu_link</gz_frame_id>
+      <visualize>true</visualize>
+      <topic>imu</topic>
+
+      
+    <parent link="parent_link"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <!-- Sensor |camera,ray,imu,magnetometer,gps,force_torque,contact,sonar,rfidtag,rfid| -->
+      <imu>
+        <angular_velocity>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+            </noise>
+          </z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+            </noise>
+          </z>
+        </linear_acceleration>
+      </imu>
+    </sensor>
   </gazebo>
 
 </robot>
