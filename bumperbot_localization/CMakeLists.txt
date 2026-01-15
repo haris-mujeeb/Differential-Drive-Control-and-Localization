@@ -18,31 +18,36 @@ include_directories(include)
 add_executable(kalman_filter src/kalman_filter.cpp)
 ament_target_dependencies(kalman_filter rclcpp sensor_msgs nav_msgs)
 
+add_executable(imu_republisher src/imu_republisher.cpp)
+ament_target_dependencies(imu_republisher rclcpp sensor_msgs)
+
+ament_python_install_package(${PROJECT_NAME})
+
 install(
   DIRECTORY include
   DESTINATION include
+)  
+
+install(
+  DIRECTORY launch config
+  DESTINATION share/${PROJECT_NAME}
 )
 
 install(TARGETS
   kalman_filter
+  imu_republisher
   DESTINATION lib/${PROJECT_NAME}
-)
-
-ament_python_install_package(${PROJECT_NAME})
+)  
 
 install(PROGRAMS
   ${PROJECT_NAME}/kalman_filter.py
+  ${PROJECT_NAME}/imu_republisher.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # comment the line when a copyright and license is added to all source files
   set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # comment the line when this package is in a git repo and when
-  # a copyright and license is added to all source files
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
