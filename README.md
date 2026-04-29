@@ -1,10 +1,24 @@
-# ROS2 Gazebo Differential Drive Control & Localization
-
-This repository is my personal workspace for learning Differential Drive Control & Localization by following the **"Self-Driving and ROS 2 - Learn by Doing! Odometry & Control"** tutorial by [AntoBrandi](https://github.com/AntoBrandi).
+# Differential Drive Control & Localization using ROS2 & Gazebo 
 
 <img width="242" height="304" alt="image" src="https://github.com/user-attachments/assets/686d5901-1e4f-436c-ac99-62cf9bb4ea12" />
 
 https://github.com/user-attachments/assets/ce78ea03-a3c7-4505-a9e4-667a36cd703f
+
+## Comparative analysis of localization errors after a 45-second circular trajectory
+| Metric             | Scenario A (Odom) | Scenario B (AMCL)                      |
+|--------------------|-------------------:|----------------------------------------|
+| Final Error (m)    | 0.094              | 0.014                                  |
+| Max Error (m)      | 0.182              | 0.051                                  |
+| Mean Error (m)     | 0.105              | 0.019                                  |
+| Error Characteristic| Divergent         | **Bounded (Self-correcting)**          |
+
+<img width="1500" height="600" alt="trajectory_comparison" src="https://github.com/user-attachments/assets/201e77db-1b86-46d2-8333-58c834782457" />
+The odometry-only trajectory exhibits a clear divergence over time, with the final pose drifting significantly from the ground truth, as shown in the figure of the left. 
+In contrast, the AMCL-enabled localization maintains a high level of accuracy throughout the 45-second duration, with the estimated pose closely following the reference path, as shown in the figure on the right.
+
+
+## References:
+This repository is my personal workspace for learning and testing Differential Drive Control & Localization building upon the work done by [AntoBrandi](https://github.com/AntoBrandi).
 
 The main goal is to implement and understand the concepts of odometry and control for a mobile robot using ROS 2. Each package in this workspace serves as a module for a specific functionality, and each contains its own `README.md` with detailed notes on the concepts I've learned.
 
